@@ -5,7 +5,7 @@ export const TicketList = () => {
 
     useEffect(
         () => {
-            fetch("http://localhost:8088/http://localhost:8088/serviceTickets?_expand=employee&_expand=customer")
+            fetch("http://localhost:8088/serviceTickets?_expand=employee&_expand=customer")
                 .then(res => res.json())
                 .then((data) => {
                     updateTickets(data)
@@ -20,11 +20,12 @@ export const TicketList = () => {
             {
                 tickets.map(
                     (ticket) => {
-                        return <p key={`ticket--${ticket.id}`}>
-                            {ticket.description} submitted by 
-                            {ticket.customer.name} 
+                        return <div key={`ticket--${ticket.id}`}>
+                            <p>
+                            {ticket.description} submitted by {ticket.customer.name} 
                             and worked on by {ticket.employee.name}
-                        </p>
+                            </p>
+                        </div>
                     }
                 )
             }
