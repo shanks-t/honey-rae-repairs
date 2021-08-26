@@ -7,7 +7,7 @@ export const Ticket = () => {
 
     useEffect(
         () => {
-            return fetch(`http://localhost:8088/serviceTickets${ticketId}?_expand=customer&_expand=employee`)
+            return fetch(`http://localhost:8088/serviceTickets/${ticketId}?_expand=customer&_expand=employee`)
             .then(res => res.json())
             .then((data) => {
                 assignTicket(data)
@@ -20,9 +20,9 @@ export const Ticket = () => {
         <>
             <h2>Ticket {ticketId} Details</h2>
             <section className="ticket">
-                <h3 className="ticket__description"></h3>
-                <div className="ticket__customer"></div>
-                <div className="ticket__employee"></div>
+                <h3 className="ticket__description">{ ticket.description }</h3>
+                <div className="ticket__customer">{ ticket.customer?.name }</div>
+                <div className="ticket__employee"> { ticket.employee?.name }</div>
             </section>
         </>
     )
