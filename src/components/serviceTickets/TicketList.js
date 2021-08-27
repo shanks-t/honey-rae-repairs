@@ -2,28 +2,33 @@ import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { useHistory } from "react-router-dom"
 
-const deleteTicket = (id) => {
-    fetch(`http://localhost:8088/serviceTickets/${id}`, {
-        method: "DELETE"
-    })
-}
+
 
 
 export const TicketList = () => {
     const [tickets, updateTickets] = useState([])
     const history = useHistory()
- 
-    useEffect(
-        () => {
-            fetch("http://localhost:8088/serviceTickets?_expand=employee&_expand=customer")
+
+    const deleteTicket = (id) => {
+        fetch(`http://localhost:8088/serviceTickets/${id}`, {
+            method: "DELETE"
+        })
+        .then(getServiceTickets)
+    }
+
+    const getServiceTickets = () => {
+        return fetch("http://localhost:8088/serviceTickets?_expand=employee&_expand=customer")
                 .then(res => res.json())
                 .then((data) => {
                     updateTickets(data)
-                })
-        },
-        []
+        })
+    }
+    //const deleteTicket = useState('change', )
+    useEffect(
+        () => {
+         getServiceTickets()
+        },[]
     )
-
 
     return (
         <>
