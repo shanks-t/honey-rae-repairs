@@ -20,9 +20,9 @@ export const Employee = () => {
         <>
             <h2>Employee {employeeId} Details</h2>
             <section className="employee">
-                <h3 className="employee__description">{ employee.description }</h3>
-                <div className="employee__customer">{ employee.customer?.name }</div>
-                <div className="employee__employee"> { employee.employee?.name }</div>
+                <h3 className="employee__description">{ employee.name }</h3>
+                <div className="employee__customer">{ employee.specialty }</div>
+
             </section>
         </>
     )
